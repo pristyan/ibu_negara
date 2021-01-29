@@ -43,7 +43,7 @@ class _ShoppingPageState extends BaseWidgetState<ShoppingPage, ShoppingNotifier>
         return Scaffold(
           appBar: DefaultAppBar(
             title: Text(
-              widget.action == ShoppingAction.UPDATE ? "Ubah Catatan" : "Tambah Catatan",
+              widget.action == ShoppingAction.UPDATE ? "UBAH CATATAN" : "TAMBAH CATATAN",
             ),
           ),
           body: SingleChildScrollView(

@@ -34,7 +34,7 @@ const TextStyle unselected_tab_text_style = TextStyle(
 );
 
 const TextStyle appbar_text_style = TextStyle(
-  fontSize: 20,
+  fontSize: text_title,
   fontWeight: FontWeight.w700,
   color: Colors.white,
 );
