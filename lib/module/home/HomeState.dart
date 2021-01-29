@@ -8,7 +8,7 @@ class HomeState extends BaseState {
   String get totalPrice {
     int total = 0;
     shoppingList.forEach((item) {
-      total += int.parse(item.price);
+      total += item.totalPrice;
     });
 
     return moneyFormatter(total.toDouble()).symbolOnLeft;
@@ -17,7 +17,7 @@ class HomeState extends BaseState {
   String get totalCheckedPrice {
     int total = 0;
     shoppingList.where((item) => item.isChecked).forEach((item) {
-      total += int.parse(item.price);
+      total += item.totalPrice;
     });
 
     return moneyFormatter(total.toDouble()).symbolOnLeft;
@@ -26,7 +26,7 @@ class HomeState extends BaseState {
   String get totalUncheckedPrice {
     int total = 0;
     shoppingList.where((item) => !item.isChecked).forEach((item) {
-      total += int.parse(item.price);
+      total += item.totalPrice;
     });
 
     return moneyFormatter(total.toDouble()).symbolOnLeft;

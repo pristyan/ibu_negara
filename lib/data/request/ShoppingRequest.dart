@@ -4,12 +4,14 @@ class ShoppingRequest {
   int id;
   String name;
   String price;
+  int amount;
   bool isChecked;
 
   ShoppingRequest({
     this.id,
     this.name,
     this.price,
+    this.amount,
     this.isChecked,
   });
 
@@ -19,6 +21,7 @@ class ShoppingRequest {
       name: data.name,
       price: data.price,
       isChecked: data.isChecked,
+      amount: data.amount ?? 1,
     );
   }
 }

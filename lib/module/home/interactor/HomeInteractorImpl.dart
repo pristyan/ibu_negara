@@ -29,14 +29,7 @@ class HomeInteractorImpl implements HomeInteractor {
   Future saveReorderedList(List<ShoppingViewData> list) async {
     var listEntity = ShoppingListEntity(data: List());
     listEntity.data.addAll(
-      list.map(
-        (e) => ShoppingEntity(
-          id: e.id,
-          name: e.name,
-          price: e.price,
-          isChecked: e.isChecked,
-        ),
-      ),
+      list.map((data) => ShoppingEntity.fromViewData(data)),
     );
 
     await dataSource.saveList(listEntity);

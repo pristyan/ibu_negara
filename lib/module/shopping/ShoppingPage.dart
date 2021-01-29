@@ -68,6 +68,17 @@ class _ShoppingPageState extends BaseWidgetState<ShoppingPage, ShoppingNotifier>
                           capitalization: TextCapitalization.words,
                         ),
                         SizedBox(height: spacing_medium),
+                        Text("Jumlah", style: bold_label_text_style),
+                        SizedBox(height: spacing_small),
+                        FilledInputText(
+                          hint: "1",
+                          controller: notifier.state.amountController,
+                          textInputType: TextInputType.number,
+                          inputFormatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                        SizedBox(height: spacing_medium),
                         Text("Harga", style: bold_label_text_style),
                         SizedBox(height: spacing_small),
                         FilledInputText(
@@ -78,7 +89,7 @@ class _ShoppingPageState extends BaseWidgetState<ShoppingPage, ShoppingNotifier>
                             FilteringTextInputFormatter.digitsOnly,
                             CurrencyInputFormatter(),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

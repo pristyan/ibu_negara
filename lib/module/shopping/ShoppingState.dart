@@ -4,7 +4,11 @@ import 'package:ibu_negara/widget/DefaultWidget.dart';
 
 class ShoppingState extends BaseState {
   TextEditingController nameController = TextEditingController();
+
   TextEditingController priceController = TextEditingController();
+
+  TextEditingController amountController = TextEditingController();
+
   ShoppingViewData data;
 
   ShoppingState({this.data});

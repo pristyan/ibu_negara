@@ -36,15 +36,18 @@ class ShoppingListItem extends StatelessWidget {
                   onChanged: checkBoxListener,
                 ),
                 Expanded(
-                  child: Text(
-                    data.name,
-                    style: input_text_style,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(data.name, style: input_text_style),
+                      Text(data.formattedAmountPrice, style: label_text_style),
+                    ],
                   ),
                 ),
                 SizedBox(width: spacing_normal),
                 Text(
-                  data.formattedPrice,
-                  style: bold_content_text_style,
+                  data.formattedTotalPrice,
+                  style: input_text_style.copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
             ),

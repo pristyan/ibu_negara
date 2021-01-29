@@ -16,6 +16,7 @@ class ShoppingNotifier extends BaseNotifier<ShoppingState> {
     if (state.data != null) {
       state.nameController.text = state.data.name;
       state.priceController.text = state.data.formattedPrice;
+      state.amountController.text = state.data.formattedAmount;
     }
   }
 
@@ -28,25 +29,31 @@ class ShoppingNotifier extends BaseNotifier<ShoppingState> {
     return true;
   }
 
-  void addItem() async {
-    if (!isValidInput()) return;
-
+  ShoppingRequest get shoppingRequest {
     var price = state.priceController.text
         .replaceAll("Rp", "")
         .replaceAll(",", "")
         .replaceAll(".", "")
         .trim();
 
-    var request = ShoppingRequest(
+    var amount = state.amountController.text;
+
+    return ShoppingRequest(
+      id: state.data != null ? state.data.id : null,
       name: state.nameController.text,
       price: price.isEmpty ? "0" : price,
-      isChecked: false,
+      amount: (amount.isEmpty || amount == "0") ? 1 : int.parse(amount),
+      isChecked: state.data == null ? false : state.data.isChecked ?? false,
     );
+  }
+
+  void addItem() async {
+    if (!isValidInput()) return;
 
     state.isLoading = true;
     notifyListeners();
 
-    await interactor.addItem(request);
+    await interactor.addItem(shoppingRequest);
 
     state.isLoading = false;
     notifyListeners();
@@ -58,21 +65,10 @@ class ShoppingNotifier extends BaseNotifier<ShoppingState> {
   void updateItem() async {
     if (!isValidInput()) return;
 
-    var request = ShoppingRequest(
-      id: state.data.id,
-      isChecked: state.data.isChecked,
-      name: state.nameController.text,
-      price: state.priceController.text
-          .replaceAll("Rp", "")
-          .replaceAll(",", "")
-          .replaceAll(".", "")
-          .trim(),
-    );
-
     state.isLoading = true;
     notifyListeners();
 
-    await interactor.updateItem(request);
+    await interactor.updateItem(shoppingRequest);
 
     state.isLoading = false;
     notifyListeners();
